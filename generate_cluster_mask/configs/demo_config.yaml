@@ -1,0 +1,9 @@
+work_dir: ${hydra:runtime.cwd}
+save_dir: ${hydra:run.dir}
+examine_idx: 400
+
+track_path: ${work_dir}/../data_preprocessing/lyft/meta_data/fw70_2m_train_track_list.pkl
+idx_info: ${work_dir}/../data_preprocessing/lyft/meta_data/fw70_2m_valid_train_idx_info.pkl
+pp_score_path: ${work_dir}/intermediate_results/lyft_pp_score_fw70_2m_r0.3
+
+data_root: ???

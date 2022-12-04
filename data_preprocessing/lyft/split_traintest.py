@@ -81,7 +81,9 @@ def main(args):
                     # pick samples
                     indices = [min_dist_indices]
                     if args.only_forward:
-                        forward = origin_pose[0,:3] @ poses[seq_id][min_dist_indices][0, :3] > 0
+                        forward = origin_pose[0,
+                                              :3] @ poses[seq_id][min_dist_indices][0, :3] > 0
+                        # breakpoint()
                         for dis in dis_choice:
                             temp = np.where(distance > dis)[0]
                             if forward:
@@ -114,16 +116,17 @@ def main(args):
             pbar.set_postfix({'count': len(valid_idx)})
         print(f"#{name}: {len(valid_idx)}")
         pickle.dump(track_list, open(osp.join(args.save_root,
-            f"{args.prefix}{name}_track_list.pkl"), "wb"))
+                                              f"{args.prefix}{name}_track_list.pkl"), "wb"))
         pickle.dump(valid_idx, open(osp.join(args.save_root,
-            f"{args.prefix}valid_{name}_idx_info.pkl"), "wb"))
+                                             f"{args.prefix}valid_{name}_idx_info.pkl"), "wb"))
         with open(osp.join(args.save_root, f"{args.prefix}{name}_idx.txt"), 'w') as f:
             f.write("\n".join([f"{x:06d}" for x in valid_idx.keys()]))
 
     full_test_idx = [item for sublist in test_track for item in sublist]
     print(f"#test: {len(full_test_idx)}")
     with open(osp.join(args.save_root, f"{args.prefix}full_test_idx.txt"), 'w') as f:
-            f.write("\n".join([f"{x:06d}" for x in full_test_idx]))
+        f.write("\n".join([f"{x:06d}" for x in full_test_idx]))
+
 
 if __name__ == "__main__":
     main(parse_args())

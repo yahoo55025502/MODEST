@@ -351,9 +351,9 @@ class KittiConverter:
             # Convert image (jpg to png).
             src_im_path = self.lyft_ds.data_path.joinpath(filename_cam_full)
             dst_im_path = self.image_folder.joinpath(f"{sample_name}.png")
-            if not dst_im_path.exists():
-                im = Image.open(src_im_path)
-                im.save(dst_im_path, "PNG")
+            #if not dst_im_path.exists():
+            im = Image.open(src_im_path)
+            im.save(dst_im_path, "PNG")
 
             # Convert lidar.
             # Note that we are only using a single sweep, instead of the commonly used n sweeps.

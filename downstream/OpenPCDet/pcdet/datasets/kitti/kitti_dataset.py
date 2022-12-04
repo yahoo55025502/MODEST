@@ -531,9 +531,10 @@ if __name__ == '__main__':
         import yaml
         from pathlib import Path
         from easydict import EasyDict
-        dataset_cfg = EasyDict(yaml.load(open(sys.argv[2])))
+        dataset_cfg = EasyDict(yaml.safe_load(open(sys.argv[2])))
         ROOT_DIR = (Path(__file__).resolve().parent / '../../../').resolve()
-        data_path = dataset_cfg.DATA_PATH if len(sys.argv) < 4 else sys.argv[3]
+        # data_path = dataset_cfg.DATA_PATH if len(sys.argv) < 4 else sys.argv[3]
+        data_path = dataset_cfg.DATA_PATH
         create_kitti_infos(
             dataset_cfg=dataset_cfg,
             class_names=['Car', 'Pedestrian', 'Cyclist'],
